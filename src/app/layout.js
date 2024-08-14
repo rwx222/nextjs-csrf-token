@@ -4,8 +4,6 @@ import '@/app/globals.css'
 
 const nextFont = Raleway({ subsets: ['latin'] })
 
-export const dynamic = 'force-dynamic'
-
 export const metadata = {
   title: {
     template: '%s | NextJS CSRF Token',
