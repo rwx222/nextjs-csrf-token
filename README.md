@@ -1,6 +1,4 @@
-This project is a code example for [a blog](https://dev.to/) where the `@edge-csrf/core` library is implemented along with `Next.js 14` to generate and validate `CSRF tokens`.
-
-Check out [the blog here](https://dev.to/) 👈 to learn more.
+This project is a code example where the `@edge-csrf/core` library is implemented along with `Next.js 14` to generate and validate `CSRF tokens`.
 
 Important files:
 
