@@ -7,8 +7,8 @@ const nextFont = Raleway({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Next.js 15 + CSRF Token',
-    default: 'Next.js 15 + CSRF Token',
+    template: '%s | Next.js + CSRF Token',
+    default: 'Next.js + CSRF Token',
   },
   description:
     'Next.js and CSRF Token example, to avoid middleware edge runtime error',
