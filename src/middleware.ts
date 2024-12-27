@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
 
 import {
   IS_PRODUCTION,
@@ -7,7 +7,7 @@ import {
 } from '@/constants'
 import { generateCsrfToken, verifyCsrfToken } from '@/utils/csrfTokens'
 
-export async function middleware(request) {
+export async function middleware(request: NextRequest) {
   const responseNext = NextResponse.next()
 
   // I don't validate POST requests because NextJS 'server actions' use this method,
@@ -22,7 +22,7 @@ export async function middleware(request) {
   ) {
     const invalidCsrfTokenResponse = NextResponse.json(
       { message: ERROR_CODE_INVALID_CSRF },
-      { status: 403 }
+      { status: 403 },
     )
 
     try {
@@ -65,9 +65,7 @@ export async function middleware(request) {
         sameSite: 'lax',
         httpOnly: false, // This token needs to be accessible from JS on the front end
         secure: IS_PRODUCTION,
-        maxAge: IS_PRODUCTION
-          ? 60 * 60 // 60 minutes is a good amount of time without creating a token for each user.
-          : 60 * 1, // 1 minute for development (for testing purposes).
+        maxAge: 30, // 30 seconds for this tutorial example, for a production project 3600 seconds (1 hour) is recommended
       })
     } catch (error) {
       console.error(error)
@@ -80,11 +78,11 @@ export async function middleware(request) {
 export const config = {
   matcher: [
     /*
-      Match all request paths except for the ones starting with:
-        - _next/static (static files)
-        - _next/image (image optimization files)
-        - favicon.ico (favicon file)
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico, sitemap.xml, robots.txt (metadata files)
      */
-    '/((?!_next/static|_next/image|favicon.ico).*)',
+    '/((?!_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
   ],
 }

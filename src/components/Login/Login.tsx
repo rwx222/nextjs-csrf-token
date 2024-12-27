@@ -1,5 +1,5 @@
 'use client'
-import { useCallback, useState, Suspense } from 'react'
+import { useCallback, useState, Suspense, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { CSRF_TOKEN_NAME } from '@/constants'
@@ -7,10 +7,12 @@ import getCookie from '@/utils/getCookie'
 import deleteCsrfCookieAction from '@/actions/deleteCsrfCookieAction'
 
 function BaseComponent() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [includeToken, setIncludeToken] = useState(false)
-  const [resultMessage, setResultMessage] = useState('')
   const router = useRouter()
+
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [includeToken, setIncludeToken] = useState<boolean>(false)
+  const [resultMessage, setResultMessage] = useState<string>('')
+  const [seconds, setSeconds] = useState<number>(0)
 
   const handleLogin = useCallback(async () => {
     try {
@@ -37,14 +39,25 @@ function BaseComponent() {
     try {
       setResultMessage('')
       await deleteCsrfCookieAction()
+      setSeconds(0)
       router.refresh()
     } catch (error) {
       console.error(error)
     }
   }, [router])
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds((prevState) => prevState + 1)
+    }, 1000)
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [])
+
   return (
-    <div className='border rounded-xl p-5 text-lg'>
+    <div className='border border-[#1d9bf0] rounded-xl p-5 text-lg'>
       <div>
         <input
           type='checkbox'
@@ -56,7 +69,7 @@ function BaseComponent() {
           }}
         />
         <label htmlFor='send_token' className='ml-2 cursor-pointer'>
-          {`Send token in the 'login' request`}
+          {`Send token in request`}
         </label>
       </div>
 
@@ -65,9 +78,9 @@ function BaseComponent() {
           type='button'
           onClick={handleLogin}
           disabled={isLoading}
-          className='py-1 px-4 border rounded border-slate-900 bg-slate-100 font-medium min-w-56 w-full'
+          className='py-1 px-4 rounded bg-[#1d9bf0] font-medium min-w-56 w-full'
         >
-          {includeToken ? 'Login (with token)' : 'Login (without token)'}
+          {includeToken ? 'Request (with token)' : 'Request (without token)'}
         </button>
       </div>
 
@@ -76,21 +89,23 @@ function BaseComponent() {
           type='button'
           onClick={generateNewCookie}
           disabled={isLoading}
-          className='py-1 px-4 border rounded border-slate-900 bg-slate-100 font-medium min-w-56 w-full'
+          className='py-1 px-4 rounded bg-[#1d9bf0] font-medium min-w-56 w-full'
         >
           {'Generate new cookie'}
         </button>
       </div>
 
-      <div className='pt-3 text-blue-600'>{`RESULT: '${resultMessage}'`}</div>
+      <div className='pt-3 text-[#1d9bf0] font-semibold'>{`RESULT: '${resultMessage}'`}</div>
+
+      <div className='pt-3 font-semibold'>{`Seconds: ${seconds.toLocaleString()}`}</div>
     </div>
   )
 }
 
-export default function Login(props) {
+export default function Login() {
   return (
     <Suspense>
-      <BaseComponent {...props} />
+      <BaseComponent />
     </Suspense>
   )
 }

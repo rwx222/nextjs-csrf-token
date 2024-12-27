@@ -22,24 +22,13 @@ const CONFIG = {
 
 const secretUint8Array = createSecret(CONFIG.SECRET_LENGTH)
 
-/**
- * Generates a CSRF token asynchronously.
- *
- * @return {Promise<string>} The generated CSRF token as a string.
- */
-export async function generateCsrfToken() {
+export async function generateCsrfToken(): Promise<string> {
   const tokenUint8Arr = await createToken(secretUint8Array, CONFIG.SALT_LENGTH)
   const tokenStr = utoa(tokenUint8Arr)
   return tokenStr
 }
 
-/**
- * Verifies a CSRF token asynchronously.
- *
- * @param {string} token - The CSRF token to verify.
- * @return {Promise<boolean>} A Promise that resolves to a boolean indicating whether the token is valid.
- */
-export async function verifyCsrfToken(token) {
+export async function verifyCsrfToken(token: string): Promise<boolean> {
   const tokenUint8Arr = atou(token)
   const isValid = await verifyToken(tokenUint8Arr, secretUint8Array)
   return isValid

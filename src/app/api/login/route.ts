@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
 
 import { ERROR_CODE_INTERNAL_SERVER } from '@/constants'
 
@@ -8,7 +8,7 @@ import { ERROR_CODE_INTERNAL_SERVER } from '@/constants'
 
 // I don't validate CSRF token in POST requests because NextJS 'server actions' use POST method
 // That's why I use the PUT method here 👇👇👇 (see middleware.js)
-export async function PUT(request) {
+export async function PUT(request: NextRequest) {
   try {
     // ✅ 🚨 👉 Put some real code here to do anything you want in this endpoint
     // ✅ 🚨 👉 I'm just using the request object here without doing anything with it
@@ -17,7 +17,7 @@ export async function PUT(request) {
 
     // ✅ 🚨 👉 Fake login response after some logic
     const responsePayload = {
-      message: 'You are now logged in.',
+      message: 'You are now logged in',
     }
     return new Response(JSON.stringify(responsePayload), { status: 200 })
   } catch (error) {
@@ -25,7 +25,7 @@ export async function PUT(request) {
 
     return NextResponse.json(
       { message: ERROR_CODE_INTERNAL_SERVER },
-      { status: 500 }
+      { status: 500 },
     )
   }
 }
