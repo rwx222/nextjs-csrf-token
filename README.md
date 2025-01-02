@@ -10,6 +10,10 @@ Important files:
 - `/src/app/components/Login/Login.tsx`
 - `/src/app/page.tsx`
 
+## Details
+
+👨‍💻 dev.to [post](https://dev.to/andresdotsh/csrf-tokens-in-nextjs-3mlb).
+
 ## Live demo
 
 🚀 Live demo [here](https://next-csrf.vapor91.com).
