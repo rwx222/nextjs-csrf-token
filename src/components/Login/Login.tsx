@@ -1,5 +1,6 @@
 'use client'
-import { useCallback, useState, Suspense, useEffect } from 'react'
+
+import { useCallback, useState, Suspense } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { CSRF_TOKEN_NAME } from '@/constants'
@@ -12,7 +13,6 @@ function BaseComponent() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [includeToken, setIncludeToken] = useState<boolean>(false)
   const [resultMessage, setResultMessage] = useState<string>('')
-  const [seconds, setSeconds] = useState<number>(0)
 
   const handleLogin = useCallback(async () => {
     try {
@@ -38,23 +38,12 @@ function BaseComponent() {
   const generateNewCookie = useCallback(async () => {
     try {
       setResultMessage('')
-      await deleteCsrfCookieAction()
-      setSeconds(0)
-      router.refresh()
+      await deleteCsrfCookieAction() // Delete previous cookie if still exists.
+      router.refresh() // Sufficient to generate a new cookie because of the middleware.
     } catch (error) {
       console.error(error)
     }
   }, [router])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSeconds((prevState) => prevState + 1)
-    }, 1000)
-
-    return () => {
-      clearInterval(interval)
-    }
-  }, [])
 
   return (
     <div className='border border-[#1d9bf0] rounded-xl p-5 text-lg'>
@@ -96,8 +85,6 @@ function BaseComponent() {
       </div>
 
       <div className='pt-3 text-[#1d9bf0] font-semibold'>{`RESULT: '${resultMessage}'`}</div>
-
-      <div className='pt-3 font-semibold'>{`Seconds: ${seconds.toLocaleString()}`}</div>
     </div>
   )
 }

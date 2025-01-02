@@ -6,16 +6,16 @@ import { ERROR_CODE_INTERNAL_SERVER } from '@/constants'
 // does not have a valid CSRF token, this endpoint is never called.
 // Instead, the middleware responds with an error inmediately.
 
-// I don't validate CSRF token in POST requests because NextJS 'server actions' use POST method
-// That's why I use the PUT method here 👇👇👇 (see middleware.js)
+// I choose not to validate CSRF tokens in POST requests as a personal
+// preference, which is why I use the PUT method here 👇👇👇.
 export async function PUT(request: NextRequest) {
   try {
-    // ✅ 🚨 👉 Put some real code here to do anything you want in this endpoint
-    // ✅ 🚨 👉 I'm just using the request object here without doing anything with it
+    // Put some real code here; I'm using the request object, but I'm actually
+    // doing nothing with it.
     const anyHeader = request.headers.get('anyHeader') ?? ''
     console.log(`anyHeader:`, anyHeader)
 
-    // ✅ 🚨 👉 Fake login response after some logic
+    // Fake login response.
     const responsePayload = {
       message: 'You are now logged in',
     }

@@ -3,16 +3,18 @@ This project is a code example where the `@edge-csrf/core` library is implemente
 Important files:
 
 - `/src/constants.ts`
-- `/src/middleware.ts`
-- `/src/app/page.tsx`
-- `/src/app/components/Login/Login.tsx`
-- `/src/app/api/login/route.ts`
 - `/src/utils/csrfTokens.ts`
+- `/src/middleware.ts`
 - `/src/actions/deleteCsrfCookieAction.ts`
+- `/src/app/api/login/route.ts`
+- `/src/app/components/Login/Login.tsx`
+- `/src/app/page.tsx`
+
+## Live demo
+
+🚀 Live demo [here](https://next-csrf.vapor91.com).
 
 ## Run the project
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`yarn create next-app`](https://www.npmjs.com/package/create-next-app).
 
 Install dependencies
 
