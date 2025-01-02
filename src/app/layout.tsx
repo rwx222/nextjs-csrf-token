@@ -3,6 +3,7 @@ import { Raleway } from 'next/font/google'
 import { GoogleAnalytics } from '@next/third-parties/google'
 
 import '@/app/globals.css'
+import { GA_KEY } from '@/constants'
 
 const nextFont = Raleway({ subsets: ['latin'] })
 
@@ -25,7 +26,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={nextFont.className}>{children}</body>
 
-      <GoogleAnalytics gaId='G-VR5J6SPXBE' />
+      {!!GA_KEY && <GoogleAnalytics gaId={GA_KEY} />}
     </html>
   )
 }

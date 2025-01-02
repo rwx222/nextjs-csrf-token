@@ -4,3 +4,5 @@ export const CSRF_TOKEN_NAME: string = 'csrftoken'
 
 export const ERROR_CODE_INVALID_CSRF: string = 'middleware/invalid-csrf-token'
 export const ERROR_CODE_INTERNAL_SERVER: string = 'server/internal-server-error'
+
+export const GA_KEY: string | undefined = process.env.NEXT_PUBLIC_GA_KEY
