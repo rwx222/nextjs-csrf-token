@@ -12,11 +12,11 @@ Important files:
 
 ## Details
 
-👨‍💻 dev.to [post](https://dev.to/andresdotsh/csrf-tokens-in-nextjs-3mlb).
+👨‍💻 dev.to [post](https://dev.to/rwx222/csrf-tokens-in-nextjs-3mlb).
 
 ## Live demo
 
-🚀 Live demo [here](https://next-csrf.vapor91.com).
+🚀 Live demo [here](https://csrf.rwx222.com).
 
 ## Run the project
 

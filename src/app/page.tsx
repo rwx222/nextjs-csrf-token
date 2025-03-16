@@ -14,13 +14,13 @@ export default function Home() {
         <p className='pt-4 text-right'>
           <a
             target='_blank'
-            href='https://dev.to/andresdotsh/csrf-tokens-in-nextjs-3mlb'
+            href='https://dev.to/rwx222/csrf-tokens-in-nextjs-3mlb'
             className='text-[#1d9bf0] font-medium mr-5'
           >{`📖 Post`}</a>
 
           <a
             target='_blank'
-            href='https://github.com/andresdotsh/nextjs-csrf-token'
+            href='https://github.com/rwx222/nextjs-csrf-token'
             className='text-[#1d9bf0] font-medium'
           >{`💻 GitHub`}</a>
         </p>
