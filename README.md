@@ -14,6 +14,10 @@ Important files:
 
 👨‍💻 dev.to [post](https://dev.to/rwx222/csrf-tokens-in-nextjs-3mlb).
 
+## Live demo
+
+🚀 Live demo [here](https://csrf-tokens.rwx222.com).
+
 ## Run the project
 
 Install dependencies
